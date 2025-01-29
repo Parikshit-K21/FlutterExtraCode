@@ -2,7 +2,7 @@
 import "package:dynaa/oderdetail.dart";
 import "package:dynaa/orderTrack.dart";
 import "package:dynaa/NAv.dart";
-import "package:dynaa/ordershowpage.dart";
+import "package:dynaa/ordershow/ordershowpage.dart";
 import "package:dynaa/qr.dart";
 import "package:flutter/material.dart";
 import 'package:dynaa/data.dart'; // Ensure this import is present
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     
     return const MaterialApp(
       title: "RBAC Demo",
-      home: FadeAppBarTutorial()
+      home: Ordershowpage(),
       );
       }
 

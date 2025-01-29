@@ -29,7 +29,7 @@ class _FadeAppBarTutorialState extends State<FadeAppBarTutorial> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: FadeAppBar(scrollOffset: _scrollControllerOffset),
-  backgroundColor: const Color(0xff123456),
+  backgroundColor: const Color.fromARGB(255, 37, 116, 196),
   body: Container(
     width: double.infinity,
     height: double.infinity,
@@ -149,7 +149,7 @@ class SearchInput extends StatelessWidget {
         style: const TextStyle(fontSize: 14),
         decoration: InputDecoration(
           prefixIcon:
-              const Icon(Icons.search, size: 20, color: Color(0xffFF5A60)),
+              const Icon(Icons.search, size: 20, color: Colors.blue),
           filled: true,
           fillColor: Colors.white,
           hintText: 'Search for reports, orders, etc.',
@@ -278,4 +278,103 @@ void handleQuickMenuItemTap(BuildContext context, String label) {
     );
     
   }
+  //  Widget itempay(){
+  // return Container(
+  //           padding: const EdgeInsets.all(20),
+  //           width: double.infinity,
+  //           height: 210,
+  //           decoration: BoxDecoration(color: const Color(0xff242424), borderRadius: BorderRadius.circular(24)),
+  //           child: const Column(
+  //             children: [
+  //               Row(
+  //          SizedBox(height: 12),
+  //                 children: [
+  //                   Icon(Icons.payment, color: Colors.green),
+  //                   Text(
+  //                     "Payment Status",
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 18,
+  //                       fontWeight: FontWeight.bold,
+  //                     ),
+  //                   ),
+  //                   Spacer(),
+  //                   Icon(
+  //                     Icons.keyboard_arrow_up,
+  //                     color: Colors.white,
+  //                     size: 28,
+  //                   )
+  //                 ],
+  //               ),
+  //               Row(
+  //                 spacing: 36,
+  //                 children: [
+  //                   SizedBox.shrink(),
+  //                   Text(
+  //                     "Shipping Cost",
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 16,
+  //                     ),
+  //                   ),
+  //                   Spacer(),
+  //                   Text(
+  //                     "\$56.30",
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 15,
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Row(
+  //                 spacing: 36,
+  //                 children: [
+  //                   SizedBox.shrink(),
+  //                   Text(
+  //                     "Insurance",
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 16,
+  //                     ),
+  //                   ),
+  //                   Spacer(),
+  //                   Text(
+  //                     "\$4",
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 15,
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               Divider(
+  //                 color: Colors.grey,
+  //               ),
+  //               Row(
+  //                 spacing: 36,
+  //                 children: [
+  //                   SizedBox.shrink(),
+  //                   Text(
+  //                     "Total",
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 16,
+  //                     ),
+  //                   ),
+  //                   Spacer(),
+  //                   Text(
+  //                     "\$60.30",
+  //                     style: TextStyle(
+  //                       color: Colors.white,
+  //                       fontSize: 15,
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //         )
+
+  //  }
             
