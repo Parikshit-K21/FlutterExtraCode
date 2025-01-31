@@ -68,7 +68,7 @@ class _TabBarAndTabViewsState extends State<TabBarAndTabViews>
           // give the tab bar a height [can change height to preferred height]
           Container(
             height: 45,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               
             ),

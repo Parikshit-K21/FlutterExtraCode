@@ -1,3 +1,4 @@
+import 'package:dynaa/orderDet/oderdetailAI.dart';
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
@@ -18,7 +19,7 @@ class TimelineItem {
 }
 
 class OrderTimelineScreen extends StatelessWidget {
-  const OrderTimelineScreen({Key? key, required this.n}) : super(key: key);
+  const OrderTimelineScreen({super.key, required this.n});
   final int n;
 
 
@@ -50,62 +51,59 @@ class OrderTimelineScreen extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(
-    title: const Text("Order Details",textAlign: TextAlign.center,), 
-    
-    bottom: PreferredSize(
-      preferredSize: Size.fromHeight(50.0), // Adjust height as needed
-      child: SearchInputFb1(searchController: searchController, hintText: "Search"), // Corrected line
-    ),
-  ),
-  
-      body: Timeline.tileBuilder(
-        theme: TimelineThemeData(
-          nodePosition: 0.03,
-          connectorTheme: const ConnectorThemeData(thickness: 2.5),
-        ),
-        builder: TimelineTileBuilder.connected(
-          connectionDirection: ConnectionDirection.after,
-          itemCount: items.length,
-          contentsBuilder: (_, index) => Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  items[index].title,
-                  style: TextStyle(
-                    color: items[index].color,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+
+  return Container(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      children: [
+        Flexible(  // Wrap Timeline in Expanded
+          child: Timeline.tileBuilder(
+            theme: TimelineThemeData(
+              nodePosition: 0.03,
+              connectorTheme: const ConnectorThemeData(thickness: 2.5),
+            ),
+            builder: TimelineTileBuilder.connected(
+              connectionDirection: ConnectionDirection.after,
+              itemCount: items.length,
+              contentsBuilder: (_, index) => Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      items[index].title,
+                      style: TextStyle(
+                        color: items[index].color,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      items[index].subtitle,
+                      style: TextStyle(
+                        color: items[index].color.withOpacity(0.7),
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  items[index].subtitle,
-                  style: TextStyle(
-                    color: items[index].color.withOpacity(0.7),
-                    fontSize: 14,
-                  ),
-                ),
-              ],
+              ),
+              indicatorBuilder: (_, index) => DotIndicator(
+                color: items[index].color,
+                child: items[index].icon,
+              ),
+              connectorBuilder: (_, index, type) => items[index].isDashed
+                  ? DashedLineConnector(color: items[index].color)
+                  : SolidLineConnector(color: items[index].color),
             ),
           ),
-          indicatorBuilder: (_, index) => DotIndicator(
-            color: items[index].color,
-            child: items[index].icon,
-          ),
-          connectorBuilder: (_, index, type) => items[index].isDashed
-              ? DashedLineConnector(color: items[index].color)
-              : SolidLineConnector(color: items[index].color),
         ),
-      ),
-    );
-    Container(
-      child: Text("Items"),
-    );
-  }
+      ],
+    ),
+  );
+}
+
 
   bool getIsDashed(n) {
     if (n == 1 || n == 3) {
@@ -123,8 +121,7 @@ class SearchInputFb1 extends StatelessWidget {
   final TextEditingController searchController;
   final String hintText;
 
-  const SearchInputFb1({required this.searchController,required this.hintText, Key? key})
-      : super(key: key,);
+  const SearchInputFb1({required this.searchController,required this.hintText, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:dynaa/ordershow/globitems.dart' as global_state;
 
 
 

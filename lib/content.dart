@@ -24,7 +24,7 @@ class ContentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeMobile(),
     );
@@ -116,9 +116,9 @@ class HomeBase extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final isSmallScreen = screenWidth < AppConfig.smallScreenBreakpoint;
     
-    int _selectedIndex = 0;
+    int selectedIndex = 0;
 
-    void _onItemTapped(int index) {
+    void onItemTapped(int index) {
       if (index == 0) {
         Navigator.pushReplacement(
           context,
@@ -155,13 +155,13 @@ class HomeBase extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
                               vertical: 16.0, horizontal: AppConfig.boxPadding),
                           // child: const CustomCarousel(),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
                               vertical: 16.0, horizontal: AppConfig.boxPadding),
                           child: PointsWidget(),
                         ), // Add the PointsWidget here
@@ -251,12 +251,12 @@ class HomeBase extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppConfig.boxBackgroundColor,
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: AppConfig.boxShadowColor,
             blurRadius: AppConfig.shadowBlurRadius,
             spreadRadius: AppConfig.shadowSpreadRadius,
-            offset: const Offset(2, 2),
+            offset: Offset(2, 2),
           ),
         ],
       ),
@@ -350,7 +350,7 @@ class HomeBase extends StatelessWidget {
                         width: 70,
                         height: 70,
                         margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
                           boxShadow: [
@@ -358,7 +358,7 @@ class HomeBase extends StatelessWidget {
                               color: Colors.black12,
                               blurRadius: 4.0,
                               spreadRadius: 2.0,
-                              offset: const Offset(2, 2),
+                              offset: Offset(2, 2),
                             ),
                           ],
                         ),
@@ -438,7 +438,7 @@ class _PointsWidgetState extends State<PointsWidget>
 
   @override
   void initState() {
-    final coins = 5000;
+    const coins = 5000;
     super.initState();
     _controller = AnimationController(
       duration: const Duration(seconds: 7),
@@ -463,18 +463,18 @@ class _PointsWidgetState extends State<PointsWidget>
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
       decoration: BoxDecoration(
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage("backg.jpeg"),
           fit: BoxFit.cover
         ),
         
         borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black26,
             blurRadius: 4.0,
             spreadRadius: 1.0,
-            offset: const Offset(2, 2),
+            offset: Offset(2, 2),
           ),
         ],
       ),
@@ -487,7 +487,7 @@ class _PointsWidgetState extends State<PointsWidget>
           Container(
             height: 50, // Adjust size to fill container
             width: 120, // Adjust size to fill container
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.transparent,
             ),
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -520,7 +520,7 @@ class _PointsWidgetState extends State<PointsWidget>
                   Container(
                     height: 30,
                     width: 30,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.transparent,
                       shape: BoxShape.circle,
                     ),
@@ -557,7 +557,7 @@ class _PointsWidgetState extends State<PointsWidget>
           Container(
             height: 75, // Adjust size to fill container
             width: 110, // Adjust size to fill container
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.transparent, // Transparent background
             ),
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
