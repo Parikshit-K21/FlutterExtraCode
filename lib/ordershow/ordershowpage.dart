@@ -1,4 +1,3 @@
-import 'package:dynaa/ordershow/shipMentCard.dart';
 import 'package:dynaa/ordershow/tabbarselct.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +9,17 @@ class Ordershowpage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Orders History'),
+        backgroundColor: const Color.fromARGB(255, 181, 198, 212),
       ),
-      body: const Padding(
+      body: Container
+      (
+        
+        child:  const Padding(
         padding: EdgeInsets.all(16.0),
-        child: Column(
+        child:
+        
+        Column(
+          
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Row(
@@ -56,6 +62,7 @@ class Ordershowpage extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }

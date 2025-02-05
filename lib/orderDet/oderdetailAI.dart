@@ -1,21 +1,21 @@
 import 'package:dynaa/ordershow/globitems.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class EachOrderdetail extends StatelessWidget {
   final int index;
-
-  const EachOrderdetail({Key? key, required this.index}) : super(key: key);
+   
+ EachOrderdetail({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
     final Item = orderItems[index]; // Access the item from the global list
 
-    return  Container(
-      // width: 250, // Adjust width as needed
-      // height: 240, // Adjust height as needed
+    return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black, width: 2),
-        color: Colors.white, // Light grey background
+        border: Border.all(color: Colors.grey.shade400, width: 2),
+        color:  const Color.fromARGB(255, 150, 190, 240), // Light grey background
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
@@ -23,47 +23,47 @@ class EachOrderdetail extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row( children: [
             Column(
-            
+              crossAxisAlignment: CrossAxisAlignment.start, // Ensure left alignment
               children: [
-                const Text(
-                   textAlign: TextAlign.right,
+                 Text(
                   'Consumer Number',
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: fontText(12),
                 ),
-                SizedBox(height: 6,),
+                const SizedBox(height: 6),
                 Text(
-                   textAlign: TextAlign.center,
                   '${Item['orderNumber']}',
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: fontText(18),
                 ),
               ],
             ),
-            const SizedBox(height: 10),
-            Column(
-              children: [
-                const Text(
-                   textAlign: TextAlign.left,
-                  'Bill Date',
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.bold,
+            const Spacer(), // Add a spacer to align the image to the right
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 20, 20, 0),
+                  child: Image.asset(
+                    fit: BoxFit.fill,
+                    'barrcode.jpeg', // Replace with actual logo path
+                    width: 150,
+                    height: 45,
                   ),
                 ),
-         SizedBox(height: 6,),
-
+            ]
+            ),
+          
+          
+            const SizedBox(height: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start, // Ensure left alignment
+              children: [
+                Text(
+                  'Bill Date',
+                  style: fontText(12),
+                ),
+                const SizedBox(height: 6),
                 Text(
                   '${Item['scheduled date']}', // Use the actual 'date' from the item
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: fontText(18),
                 ),
               ],
             ),
@@ -71,35 +71,26 @@ class EachOrderdetail extends StatelessWidget {
             Row(
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start, // Ensure left alignment
                   children: [
-                    const Text(
-
+                     Text(
                       'Due Amount',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: fontText(12),
                     ),
-                                    SizedBox(height: 6,),
-
+                    const SizedBox(height: 6),
                     Text(                  
-                         textAlign: TextAlign.center,
                       '₹${Item['Price']}', // Use the actual 'Price' from the item
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                      style: fontText(18),),
                   ],
                 ),
-                const Spacer(), // Add a spacer to align the image to the right
-                Align(
-                  alignment: Alignment.centerRight,
+                const Spacer(), // Add a spacer to align the imag20e to the right
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
                   child: Image.asset(
+                    fit: BoxFit.fill,
                     'BWlogo.jpeg', // Replace with actual logo path
-                    width: 50,
-                    height: 50,
+                    width: 150,
+                    height: 75,
                   ),
                 ),
               ],
@@ -107,8 +98,20 @@ class EachOrderdetail extends StatelessWidget {
           ],
         ),
       ),
-    
     );
-    
+  
+
+
   }
 }
+TextStyle fontText(double a) {
+    return GoogleFonts.robotoFlex(
+      textStyle: TextStyle(
+        color: Colors.black,
+        letterSpacing: 0.5,
+        fontSize: a,
+        fontWeight: FontWeight.bold,
+        
+      ),
+    );
+  }

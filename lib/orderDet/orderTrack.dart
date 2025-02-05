@@ -1,4 +1,3 @@
-import 'package:dynaa/orderDet/oderdetailAI.dart';
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
@@ -26,7 +25,7 @@ class OrderTimelineScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    TextEditingController searchController = TextEditingController();
+    // TextEditingController searchController = TextEditingController();
     
     final List<TimelineItem> items = [
       TimelineItem(

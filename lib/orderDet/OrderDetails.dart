@@ -1,7 +1,5 @@
-import 'package:dynaa/content.dart';
 import 'package:dynaa/orderDet/orderTrack.dart';
 import 'package:flutter/material.dart';
-import 'package:timelines/timelines.dart';
 
 
 import 'oderdetailAI.dart'; // Assuming this is the correct import
@@ -18,8 +16,10 @@ Widget build(BuildContext context) {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          const OrderTimelineScreen(n: 1),
+          
           EachOrderdetail(index: index),
+          Flexible(child:const OrderTimelineScreen(n: 1),)
+          
         ],
       ),
     ),

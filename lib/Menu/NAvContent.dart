@@ -104,7 +104,7 @@ class FadeAppBar extends StatelessWidget  implements PreferredSizeWidget{
                   Text(
                     "Welcome Back, $a", 
                     style: const TextStyle(
-                      color: Color.fromARGB(255, 30, 84, 235), 
+                      color: Colors.black,
                       fontSize: 15, 
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
@@ -125,7 +125,7 @@ class FadeAppBar extends StatelessWidget  implements PreferredSizeWidget{
         ),
         const SizedBox(height: 10), // Space between the rows
         // Search Input Widget
-        const Flexible(child: SearchInput()), // Search input below the icons
+        Flexible(child: SearchInput()), // Search input below the icons
       ],
     ),
   ),
@@ -152,7 +152,7 @@ class FadeAppBar extends StatelessWidget  implements PreferredSizeWidget{
 class SearchResultsPage extends StatelessWidget {
   final String query;
 
-  const SearchResultsPage({Key? key, required this.query}) : super(key: key);
+  const SearchResultsPage({super.key, required this.query});
 
   @override
   Widget build(BuildContext context) {

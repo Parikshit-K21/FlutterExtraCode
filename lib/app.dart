@@ -1,10 +1,10 @@
 
 import "package:dynaa/Menu/NAvContent.dart";
-import "package:dynaa/orderDet/oderdetailAI.dart";
-import "package:dynaa/orderDet/orderTrack.dart";
 import "package:dynaa/orderDet/OrderDetails.dart";
-
+import "package:dynaa/orderDet/oderdetailAI.dart";
 import "package:dynaa/ordershow/ordershowpage.dart";
+import "package:dynaa/productcart/productDisplay.dart";
+
 import "package:flutter/material.dart";
 import 'package:dynaa/data.dart'; // Ensure this import is present
 
@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     
-    return const MaterialApp(
+    return MaterialApp(
       title: "RBAC Demo",
-      home: EachOrderdetail(index: 1)
+      home: ProductDetailPage()
       );
       }
 

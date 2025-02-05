@@ -10,10 +10,8 @@ import 'package:flutter/material.dart';
 
 // import 'package:login/Logic/QR_scanner.dart';
 
-import 'package:flutter/foundation.dart';
 
 
-import 'package:flutter/animation.dart';
 
 void main() {
   runApp(const ContentPage());
