@@ -1,3 +1,4 @@
+import 'package:dynaa/orderDet/eachOrder.dart';
 import 'package:dynaa/ordershow/tabbarselct.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,8 @@ class Ordershowpage extends StatelessWidget {
       body: Container
       (
         
-        child:  const Padding(
-        padding: EdgeInsets.all(16.0),
+        child:  Padding(
+        padding: const EdgeInsets.all(16.0),
         child:
         
         Column(
@@ -46,18 +47,18 @@ class Ordershowpage extends StatelessWidget {
             //     ),
             //   ],
             // ),
-            
-            SizedBox(height: 20),
-            Text(
+            Flexible(child:EachOrderdetail( index: 0,),),
+            const SizedBox(height: 5),
+            const Text(
               'Orders History',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
-            Flexible(child: TabBarAndTabViews(),),
-            SizedBox(height: 10),
+            const SizedBox(height: 5),
+            const Flexible(child: TabBarAndTabViews(),),
+            const SizedBox(height: 5),
             
           ],
         ),

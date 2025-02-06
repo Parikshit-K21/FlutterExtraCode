@@ -10,8 +10,8 @@ class TabPair {
 }
 
 List<TabPair> getTabPairs() {
-  final pendingItems = orderItems.where((item) => item['status'] == '1').toList();
-  final completedItems = orderItems.where((item) => item['status'] != '1').toList();
+  final pendingItems = orderItems.where((item) => item['status'] == '1' ||item['status'] == '2').toList();
+  final completedItems = orderItems.where((item) => item['status'] != '1'||item['status']=='2').toList();
 
   return [
     TabPair(

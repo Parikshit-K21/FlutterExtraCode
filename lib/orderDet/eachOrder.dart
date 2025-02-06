@@ -10,7 +10,7 @@ class EachOrderdetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Item = orderItems[index]; // Access the item from the global list
+    final cusinfo = userName[index]; // Access the item from the global list
 
     return Container(
       decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class EachOrderdetail extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  '${Item['orderNumber']}',
+                  '${cusinfo['custNo']}',
                   style: fontText(18),
                 ),
               ],
@@ -57,12 +57,12 @@ class EachOrderdetail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start, // Ensure left alignment
               children: [
                 Text(
-                  'Bill Date',
+                  'Name',
                   style: fontText(12),
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  '${Item['scheduled date']}', // Use the actual 'date' from the item
+                  '${cusinfo['username']}', // Use the actual 'date' from the cusinfo
                   style: fontText(18),
                 ),
               ],
@@ -74,18 +74,18 @@ class EachOrderdetail extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start, // Ensure left alignment
                   children: [
                      Text(
-                      'Due Amount',
+                      'Mobile Number',
                       style: fontText(12),
                     ),
                     const SizedBox(height: 6),
                     Text(                  
-                      '₹${Item['Price']}', // Use the actual 'Price' from the item
+                      '${cusinfo['phone']}', // Use the actual 'Price' from the item
                       style: fontText(18),),
                   ],
                 ),
                 const Spacer(), // Add a spacer to align the imag20e to the right
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 10),
                   child: Image.asset(
                     fit: BoxFit.fill,
                     'BWlogo.jpeg', // Replace with actual logo path

@@ -5,7 +5,14 @@ import 'package:flutter/material.dart';
 
 Widget buildShipmentCard(BuildContext context, int index, List<Map<String, dynamic>> orderItems) {
   final orderItem = orderItems[index];
-  final statusText = orderItem['status'] == '1' ? 'Pending' : 'Completed';
+  final statusText;
+
+  if(orderItem['status'] == '1' ||orderItem['status'] == '2' ){
+    statusText='Pending' ;
+  }
+  else{
+    statusText='Delivered';
+  }
 
   return Card(
     margin: const EdgeInsets.only(bottom: 10),
@@ -26,7 +33,7 @@ Widget buildShipmentCard(BuildContext context, int index, List<Map<String, dynam
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                 decoration: BoxDecoration(
-                  color: orderItem['status'] == '1' ? Colors.orange : Colors.green,
+                  color: orderItem['status'] == '1' || orderItem['status'] == '2' ? Colors.orange : Colors.green,
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Text(
