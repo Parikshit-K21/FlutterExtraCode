@@ -16,7 +16,7 @@ import 'NAvContent.dart';
           ),
           const SizedBox(height: 12),
           SizedBox(
-            height: 300,
+            height: 270,
             child: GridView.builder(
                
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,7 +45,7 @@ import 'NAvContent.dart';
                     item['icon'] as IconData, // Assuming 'icon' is part of the item map
                     size: 36,
                     color: Colors.black,
-                  ),
+                                    ),
                   const SizedBox(height: 4), // Space between icon and label
                   Text(
                     item['label'].replaceAll(' ', '\n'), // Replace spaces with newlines for better formatting

@@ -1,7 +1,8 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dynaa">
     <application
-        android:label="trytyr"
-        android:name="${applicationName}"
+        android:label="dynaa"
+        android:name=".io.flutter.app.dynaa"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

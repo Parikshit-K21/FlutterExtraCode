@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-
 import 'productDisplay.dart';
 
-
 class ProductGridView extends StatelessWidget {
-  // Sample product data - in real app this would come from your data source
+  // Define theme colors
+  final Color primaryBlue = Color(0xFF1E88E5);
+  final Color lightBlue = Color(0xFFBBDEFB);
+  final Color darkBlue = Color(0xFF1565C0);
+  final Color surfaceColor = Color(0xFFF5F9FF);
+
   final List<Map<String, dynamic>> products = [
     {
       'id': '1',
@@ -13,33 +16,66 @@ class ProductGridView extends StatelessWidget {
       'imageUrl': 'assets/BWlogo.jpeg',
     },
     {
-      'id': '2', 
-      'name': 'Product 2',
+      'id': '2',
+      'name': 'Product 2', 
       'price': 149.99,
       'imageUrl': 'assets/BWlogo.jpeg',
     },
-    // Add more products as needed
   ];
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final crossAxisCount = screenSize.width < 600 ? 2 : 
+                          screenSize.width < 900 ? 3 : 4;
+    final childAspectRatio = screenSize.width < 600 ? 0.75 : 0.8;
+
     return Scaffold(
+      backgroundColor: surfaceColor,
       appBar: AppBar(
-        title: const Text('Products'),
-        backgroundColor: Colors.blue,
-        elevation: 0,
-      ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(10),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.75,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+        title: const Text(
+          'Products',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
+          ),
         ),
-        itemCount: products.length,
-        itemBuilder: (context, index) {
-          return ProductCard(product: products[index]);
+        backgroundColor: primaryBlue,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(16),
+          ),
+        ),
+      ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [surfaceColor, Colors.white],
+              ),
+            ),
+            child: GridView.builder(
+              padding: EdgeInsets.all(constraints.maxWidth * 0.03),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                childAspectRatio: childAspectRatio,
+                crossAxisSpacing: constraints.maxWidth * 0.03,
+                mainAxisSpacing: constraints.maxWidth * 0.03,
+              ),
+              itemCount: products.length,
+              itemBuilder: (context, index) {
+                return ProductCard(
+                  product: products[index],
+                  primaryBlue: primaryBlue,
+                  darkBlue: darkBlue,
+                );
+              },
+            ),
+          );
         },
       ),
     );
@@ -48,81 +84,122 @@ class ProductGridView extends StatelessWidget {
 
 class ProductCard extends StatelessWidget {
   final Map<String, dynamic> product;
+  final Color primaryBlue;
+  final Color darkBlue;
 
   const ProductCard({
     Key? key,
     required this.product,
+    required this.primaryBlue,
+    required this.darkBlue,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProductDetailPage(),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double titleSize = constraints.maxWidth * 0.075;
+        final double priceSize = constraints.maxWidth * 0.065;
+
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductDetailPage(),
+              ),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: primaryBlue.withOpacity(0.08),
+                  spreadRadius: 2,
+                  blurRadius: 10,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                      image: DecorationImage(
+                        image: AssetImage(product['imageUrl']),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    padding: EdgeInsets.all(constraints.maxWidth * 0.05),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          product['name'],
+                          style: TextStyle(
+                            fontSize: titleSize,
+                            fontWeight: FontWeight.bold,
+                            color: darkBlue,
+                            letterSpacing: 0.5,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '\$${product['price']}',
+                              style: TextStyle(
+                                fontSize: priceSize,
+                                color: primaryBlue,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: primaryBlue.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Icon(
+                                Icons.add_shopping_cart_rounded,
+                                color: primaryBlue,
+                                size: priceSize * 1.2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.blue.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 5,
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Product Image
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage(product['imageUrl']),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            // Product Details
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product['name'],
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '\$${product['price']}',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.blue[700],
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:timelines/timelines.dart';
 
 class OrderTrackingWidget extends StatelessWidget {
   final int currentStatus;
@@ -15,7 +14,6 @@ class OrderTrackingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen dimensions
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
@@ -33,7 +31,6 @@ class OrderTrackingWidget extends StatelessWidget {
         status: 2,
         icon: Icons.inventory,
       ),
-      
       OrderStatus(
         title: "Delivered",
         subtitle: "Order has been delivered",
@@ -43,20 +40,19 @@ class OrderTrackingWidget extends StatelessWidget {
     ];
 
     return Container(
-      height: height ?? screenHeight * 0.5, // Adjustable height
+      height: height ?? screenHeight * 0.4,
       width: width ?? screenWidth,
       padding: EdgeInsets.symmetric(
-        horizontal: screenWidth * 0.04,
-        vertical: screenHeight * 0.02,
+        horizontal: screenWidth * 0.002,
+        vertical: screenHeight * 0.002,
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
           return Column(
             children: [
-              // Order ID and Date Section
               Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: constraints.maxHeight * 0.02,
+                  vertical: constraints.maxHeight * 0.04,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,98 +60,88 @@ class OrderTrackingWidget extends StatelessWidget {
                     Text(
                       'Order #123456',
                       style: TextStyle(
-                        fontSize: constraints.maxWidth * 0.045,
+                        fontSize: constraints.maxWidth * 0.05,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    
                   ],
                 ),
               ),
-
-              // Timeline Section
               Expanded(
-                child: Timeline.tileBuilder(
-                  theme: TimelineThemeData(
-                    nodePosition: 0,
-                    connectorTheme: const ConnectorThemeData(
-                      thickness: 2.5,
-                    ),
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    vertical: constraints.maxHeight * 0.01,
-                    horizontal: constraints.maxWidth * 0.01,
-                  ),
-                  builder: TimelineTileBuilder.connected(
-                    connectionDirection: ConnectionDirection.before,
-                    itemCount: orderStatuses.length,
-                    contentsBuilder: (_, index) {
-                      final status = orderStatuses[index];
-                      final isActive = currentStatus >= status.status;
-                      
-                      return Padding(
-                        padding: const  EdgeInsets.only(
-                          top: 20,
-                          left: 10,
-                          bottom: 10 ,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              status.title,
-                              style: TextStyle(
-                                fontSize: constraints.maxWidth * 0.04,
-                                fontWeight: FontWeight.bold,
-                                color: isActive ? Colors.blue : Colors.grey,
+                child: ListView.builder(
+                  itemCount: orderStatuses.length,
+                  itemBuilder: (context, index) {
+                    final status = orderStatuses[index];
+                    final isActive = currentStatus >= status.status;
+                    final isLast = index == orderStatuses.length - 1;
+
+                    return IntrinsicHeight(
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 120,
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: isActive ? Colors.blue : Colors.grey,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    status.icon,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                ),
+                                if (!isLast)
+                                  Expanded(
+                                    child: Container(
+                                      width: 2,
+                                      color: isActive ? Colors.blue : Colors.grey.shade300,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    status.title,
+                                    style: TextStyle(
+                                      fontSize: constraints.maxWidth * 0.04,
+                                      fontWeight: FontWeight.bold,
+                                      color: isActive ? Colors.blue : Colors.grey,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    status.subtitle,
+                                    style: TextStyle(
+                                      fontSize: constraints.maxWidth * 0.035,
+                                      color: isActive 
+                                          ? const Color.fromARGB(255, 27, 81, 126).withOpacity(0.7) 
+                                          : Colors.grey,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(height: constraints.maxHeight * 0.03),
-                            Text(
-                              status.subtitle,
-                              style: TextStyle(
-                                fontSize: constraints.maxWidth * 0.035,
-                                color: isActive 
-                                    ? const Color.fromARGB(255, 27, 81, 126).withOpacity(0.7) 
-                                    : Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    indicatorBuilder: (_, index) {
-                      final status = orderStatuses[index];
-                      final isActive = currentStatus >= status.status;
-                      
-                      return Container(
-                        width: constraints.maxWidth * 0.12,
-                        height: constraints.maxWidth * 0.12,
-                        decoration: BoxDecoration(
-                          color: isActive ? Colors.blue : Colors.grey,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          status.icon,
-                          color: Colors.white,
-                          size: constraints.maxWidth * 0.045,
-                        ),
-                      );
-                    },
-                    connectorBuilder: (_, index, type) {
-                      final status = orderStatuses[index];
-                      final isActive = currentStatus >= status.status;
-                      
-                      return SolidLineConnector(
-                        color: isActive ? Colors.blue : Colors.grey.shade300,
-                      );
-                    },
-                  ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
           );
-        }
+        },
       ),
     );
   }

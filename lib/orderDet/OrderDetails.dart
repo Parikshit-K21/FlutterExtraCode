@@ -1,7 +1,7 @@
 import 'package:dynaa/orderDet/orderTrack.dart';
 import 'package:dynaa/ordershow/globitems.dart';
 import 'package:flutter/material.dart';
-import 'eachOrder.dart';
+import '../ordershow/CusNumOrder.dart';
 
 class OrderDetails extends StatelessWidget {
   final int index;
@@ -274,7 +274,7 @@ class OrderDetails extends StatelessWidget {
               ),
             ),
             Text(
-              '₹${total.toStringAsFixed(2)}',
+              '₹${total.toStringAsFixed}',
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

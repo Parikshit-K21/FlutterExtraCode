@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:dynaa/Menu/searchInput.dart';
+import 'package:dynaa/ordershow/ordershowpage.dart';
+import 'package:dynaa/productcart/pending.dart';
+import 'package:dynaa/productcart/popularItems.dart';
 import 'package:flutter/material.dart';
 
 import 'QuickMenu.dart';
@@ -33,34 +36,45 @@ class _FadeAppBarTutorialState extends State<FadeAppBarTutorial> {
     return Scaffold(
       appBar: FadeAppBar(scrollOffset: _scrollControllerOffset),
   backgroundColor: const Color.fromARGB(255, 37, 116, 196),
-  body: Container(
-    width: double.infinity,
-    height: double.infinity,
+ body: SingleChildScrollView(
+  child: Container(
     decoration: const BoxDecoration(
       color: Colors.white,
-      // image: DecorationImage(
-      //   image: AssetImage('assets/backg.jpeg'),
-      //   fit: BoxFit.cover,
-      // ),
     ),
-    child: Container(
-      
-      
+    child: MediaQuery.of(context).size.width > 0 
+      ? Padding(
+          padding: const EdgeInsets.all(1.0),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // Quick Menu Section
-              buildHorizontalQuickMenu()
-                 
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.43,
+                child: buildHorizontalQuickMenu(),
+              ),
+              
+              const SizedBox(height: 1),
+              
+              // Popular Products Section
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.35,
+                child: PopularProducts(),
+              ),
+
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.height * 0.35,
+              //   child: PendingTasksList(),
+              // ),
             ],
           ),
-        ),
-    
+        )
+      : const CircularProgressIndicator(), // Show loading while size is calculated
   ),
-);
-
-  }
+)
+    );
 }
-
+}
 
 
 
@@ -125,7 +139,7 @@ class FadeAppBar extends StatelessWidget  implements PreferredSizeWidget{
         ),
         const SizedBox(height: 10), // Space between the rows
         // Search Input Widget
-        Flexible(child: SearchInput()), // Search input below the icons
+        const Flexible(child: SearchInput()), // Search input below the icons
       ],
     ),
   ),
@@ -188,12 +202,12 @@ void handleQuickMenuItemTap(BuildContext context, String label) {
     //     MaterialPageRoute(
     //         builder: (context) => const RetailerRegistrationApp()),
     //   );
-    // } else if (label == 'Order History') {
-    //   Navigator.push(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => const ManageOrderPage()),
-    //   );
-    // } else {
+    } else if (label == 'Order History') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Ordershowpage()),
+      );
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$label clicked')),
       );
