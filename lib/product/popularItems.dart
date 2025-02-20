@@ -1,3 +1,7 @@
+import 'package:dynaa/jsonfolder/globitems.dart';
+import 'package:dynaa/orderDet/OrderDetails.dart';
+import 'package:dynaa/product/productDisplay.dart';
+import 'package:dynaa/product/productList.dart';
 import 'package:flutter/material.dart';
 
 class PopularProducts extends StatelessWidget {
@@ -29,7 +33,12 @@ class PopularProducts extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {}, // Implement "See More" functionality
+                onPressed: () 
+                {
+            Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProductGridView()),// see more navigation
+      );}, 
                 child: const Text(
                   'See More',
                   style: TextStyle(color: Colors.blue),
@@ -46,7 +55,7 @@ class PopularProducts extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: 3, // Replace with actual product count
             itemBuilder: (context, index) {
-              return _buildProductCard(index);
+              return _buildProductCard(index, context);
             },
           ),
         ),
@@ -56,24 +65,8 @@ class PopularProducts extends StatelessWidget {
     );
   }
 
-  Widget _buildProductCard(int index) {
-    final products = [
-      {
-        'name': 'Schweppes',
-        'price': '\$9.00',
-        'image': 'proditem.jpeg', // Replace with actual image paths
-      },
-      {
-        'name': 'Fanta',
-        'price': '\$8.50',
-        'image': 'proditem.jpeg',
-      },
-      {
-        'name': 'Sprite',
-        'price': '\$7.00',
-        'image': 'proditem.jpeg',
-      },
-    ];
+  Widget _buildProductCard(int index, BuildContext context) {
+    var products = cartitems;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 5, 0),
@@ -97,15 +90,25 @@ class PopularProducts extends StatelessWidget {
 
                 child: Column(
                   children: [
-                    Positioned(
-                      top: -20,
-                      child: 
-                  Image.asset(
-                  products[index]['image'] as String,
-                  width: 80,
-                  height: 100,
-                  fit: BoxFit.cover,
-                ),),
+                  Positioned(
+                    top: -20,
+                    child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetailPage(id: products[index]['prod_id']!,  )
+                      ),
+                      );
+                    },
+                    child: Image.asset(
+                      products[index]['imageUrl'] as String,
+                      width: 80,
+                      height: 100,
+                      fit: BoxFit.fill,
+                    ),
+                    ),
+                  ),
                 const SizedBox(height: 10,),
           Text(
             products[index]['name'] as String,

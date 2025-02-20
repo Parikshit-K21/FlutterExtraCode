@@ -3,23 +3,44 @@ import 'productDisplay.dart';
 
 class ProductGridView extends StatelessWidget {
   // Define theme colors
-  final Color primaryBlue = Color(0xFF1E88E5);
-  final Color lightBlue = Color(0xFFBBDEFB);
-  final Color darkBlue = Color(0xFF1565C0);
-  final Color surfaceColor = Color(0xFFF5F9FF);
+   Color primaryBlue = Color(0xFF1E88E5);
+   Color lightBlue = Color(0xFFBBDEFB);
+   Color darkBlue = Color(0xFF1565C0);
+   Color surfaceColor = Color(0xFFF5F9FF);
 
   final List<Map<String, dynamic>> products = [
     {
-      'id': '1',
-      'name': 'Product 1',
-      'price': 99.99,
-      'imageUrl': 'assets/BWlogo.jpeg',
+      'id': '100',
+      'qty': '1',
+      'name': 'Putty',
+      'price': '99.99',
+      'imageUrl': 'assets/proditem.jpeg',
     },
+    
     {
-      'id': '2',
-      'name': 'Product 2', 
-      'price': 149.99,
-      'imageUrl': 'assets/BWlogo.jpeg',
+      'id': '101',
+      'qty': '1',
+      'name': 'WHite Putty', 
+      'price': '149.99',
+      'imageUrl': 'assets/proditem.jpeg',
+    },{
+      'id': '102',
+      'qty': '1',
+      'name': 'WallCare Putty', 
+      'price': '149.99',
+      'imageUrl': 'assets/proditem.jpeg',
+    },{
+      'id': '103',
+      'qty': '1',
+      'name': 'WaterProof Putty', 
+      'price': '149.99',
+      'imageUrl': 'assets/proditem.jpeg',
+    },{
+      'id': '104',
+      'qty': '1',
+      'name': 'Cement Putty', 
+      'price': '149.99',
+      'imageUrl': 'assets/proditem.jpeg',
     },
   ];
 
@@ -42,7 +63,7 @@ class ProductGridView extends StatelessWidget {
         ),
         backgroundColor: primaryBlue,
         elevation: 0,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(16),
           ),
@@ -98,36 +119,37 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final double titleSize = constraints.maxWidth * 0.075;
-        final double priceSize = constraints.maxWidth * 0.065;
+        final double titleSize = constraints.maxWidth * 0.085;
+        final double priceSize = constraints.maxWidth * 0.075;
 
         return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ProductDetailPage(),
+                builder: (context) => ProductDetailPage(
+                  id: product['id'] ),
               ),
             );
           },
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: primaryBlue.withOpacity(0.08),
-                  spreadRadius: 2,
+                  color: Colors.black.withOpacity(0.1),
                   blurRadius: 10,
-                  offset: Offset(0, 2),
+                  spreadRadius: 2,
                 ),
               ],
+              borderRadius: BorderRadius.circular(20),
+            
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 3,
+                  flex: 4,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
@@ -136,7 +158,7 @@ class ProductCard extends StatelessWidget {
                       ),
                       image: DecorationImage(
                         image: AssetImage(product['imageUrl']),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
                   ),
@@ -145,7 +167,7 @@ class ProductCard extends StatelessWidget {
                   flex: 2,
                   child: Container(
                     padding: EdgeInsets.all(constraints.maxWidth * 0.05),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20),
@@ -178,7 +200,7 @@ class ProductCard extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 color: primaryBlue.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(12),
@@ -186,7 +208,7 @@ class ProductCard extends StatelessWidget {
                               child: Icon(
                                 Icons.add_shopping_cart_rounded,
                                 color: primaryBlue,
-                                size: priceSize * 1.2,
+                                size: priceSize * 1.5,
                               ),
                             ),
                           ],

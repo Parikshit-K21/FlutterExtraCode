@@ -1,4 +1,4 @@
-import 'package:dynaa/ordershow/globitems.dart';
+import 'package:dynaa/jsonfolder/globitems.dart';
 import 'package:dynaa/ordershow/shipMentCard.dart';
 import 'package:flutter/material.dart';
 
@@ -86,8 +86,8 @@ class _TabBarAndTabViewsState extends State<TabBarAndTabViews>
                       ),
                     ],
                     borderRadius: BorderRadius.horizontal(
-                      left: Radius.circular(100),
-                      right: Radius.circular(100),
+                      left: Radius.circular(50),
+                      right: Radius.circular(50),
                     ),
                     color: Colors.blue,
                   ),

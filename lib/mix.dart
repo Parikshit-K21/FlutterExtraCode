@@ -1,5 +1,5 @@
-import 'package:dynaa/productcart/pending.dart';
-import 'package:dynaa/productcart/popularItems.dart';
+import 'package:dynaa/product/pending.dart';
+import 'package:dynaa/product/popularItems.dart';
 import 'package:flutter/material.dart';
 
 class MixCon extends StatelessWidget {

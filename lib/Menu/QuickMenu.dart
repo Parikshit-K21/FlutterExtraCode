@@ -20,7 +20,7 @@ import 'NAvContent.dart';
             child: GridView.builder(
                
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, // Set to 4 items per row
+                  crossAxisCount: 3, // Set to 4 items per row
               childAspectRatio: 1, // Make items square
             ),
               itemCount:quickMenuItems.length , 

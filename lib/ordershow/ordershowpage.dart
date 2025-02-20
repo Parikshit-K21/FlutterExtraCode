@@ -32,7 +32,7 @@ class Ordershowpage extends StatelessWidget {
         ),
         const SizedBox(height: 2), // Reduced spacing
         const Expanded(
-          flex: 5, // Reduced flex ratio
+          flex: 4, // Reduced flex ratio
           child: TabBarAndTabViews(),
         ),
         const SizedBox(height: 2), // Reduced spacing

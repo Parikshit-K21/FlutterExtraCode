@@ -1,5 +1,5 @@
 import 'package:dynaa/orderDet/orderTrack.dart';
-import 'package:dynaa/ordershow/globitems.dart';
+import 'package:dynaa/jsonfolder/globitems.dart';
 import 'package:flutter/material.dart';
 import '../ordershow/CusNumOrder.dart';
 

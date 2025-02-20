@@ -4,15 +4,16 @@ import "package:dynaa/mix.dart";
 import "package:dynaa/orderDet/OrderDetails.dart";
 import "package:dynaa/ordershow/CusNumOrder.dart";
 import "package:dynaa/ordershow/ordershowpage.dart";
-import "package:dynaa/productcart/pending.dart";
-import "package:dynaa/productcart/popularItems.dart";
-import "package:dynaa/productcart/productDisplay.dart";
+import "package:dynaa/product/pending.dart";
+import "package:dynaa/product/popularItems.dart";
+import "package:dynaa/product/product%20cart/cart.dart";
+import "package:dynaa/product/productDisplay.dart";
 
 import "package:flutter/material.dart";
 import 'package:dynaa/data.dart';
 
 import "orderDet/orderTrack.dart";
-import "productcart/productList.dart"; // Ensure this import is present
+import "product/productList.dart"; // Ensure this import is present
 
 
 class MyApp extends StatelessWidget {
@@ -30,8 +31,9 @@ class MyApp extends StatelessWidget {
          //OrderDetails(index: 1) 
          //PendingTasksList(),
          //ProductGridView(),
-         //OrderTrackingWidget(currentStatus: 3)
+         //OrderTrackingWidget(currentStatus: 1)
         FadeAppBarTutorial()
+        //CartDetail()
       );
       }
 

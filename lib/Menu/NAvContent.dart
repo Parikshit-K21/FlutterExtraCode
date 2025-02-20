@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:dynaa/Menu/searchInput.dart';
 import 'package:dynaa/ordershow/ordershowpage.dart';
-import 'package:dynaa/productcart/pending.dart';
-import 'package:dynaa/productcart/popularItems.dart';
+import 'package:dynaa/product/pending.dart';
+import 'package:dynaa/product/popularItems.dart';
 import 'package:flutter/material.dart';
 
 import 'QuickMenu.dart';
@@ -50,8 +50,8 @@ class _FadeAppBarTutorialState extends State<FadeAppBarTutorial> {
             children: [
               // Quick Menu Section
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.43,
-                child: buildHorizontalQuickMenu(),
+                height: MediaQuery.of(context).size.height * 0.3,
+                child: _buildHorizontalQuickMenu2(),
               ),
               
               const SizedBox(height: 1),
@@ -66,6 +66,13 @@ class _FadeAppBarTutorialState extends State<FadeAppBarTutorial> {
               //   height: MediaQuery.of(context).size.height * 0.35,
               //   child: PendingTasksList(),
               // ),
+              ElevatedButton(onPressed:
+              (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Ordershowpage()),
+                );
+              } , child: const Text('Order Task')),
             ],
           ),
         )
@@ -157,7 +164,74 @@ class FadeAppBar extends StatelessWidget  implements PreferredSizeWidget{
 
 
 
+ Widget _buildHorizontalQuickMenu2() {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 14.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Quick Menu',
+            style: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          const SizedBox(height: 2),
+          SizedBox(
+  height: 100, // Adjust height as needed
+  child: ListView.builder(
+    scrollDirection: Axis.horizontal,
+    itemCount: quickMenuItems.length,
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    itemBuilder: (context, index) {
+      final item = quickMenuItems[index];
+      return Container(
+        width: 100, // Adjust width as needed
+        margin: const EdgeInsets.only(right: 16),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: () {
+            // Navigation logic
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => item['page']),
+            );
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                child: Icon(
+                  item['icon'] as IconData,
+                  size: 32,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                item['label'],
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  ),
+)
 
+        ],
+      ),
+    );
+  }
 
 
 
@@ -187,9 +261,9 @@ final List<Map<String, dynamic>> quickMenuItems = [
   {'icon': Icons.inventory, 'label': 'Inventory'},
   {'icon': Icons.settings, 'label': 'Settings'},
   {'icon': Icons.help, 'label': 'Help Center'},
-  {'icon': Icons.support_agent, 'label': 'Customer Support'},
+  {'icon': Icons.support_agent_rounded, 'label': 'Customer Support'},
   {'icon': Icons.analytics, 'label': 'Analytics'},
-  {'icon': Icons.campaign, 'label': 'Promotions'},
+  {'icon': Icons.campaign_rounded, 'label': 'Promotions'},
   {'icon': Icons.account_circle, 'label': 'Account Management'},
   {'icon': Icons.local_shipping, 'label': 'Delivery Status'},
   {'icon': Icons.feedback, 'label': 'Feedback'},
